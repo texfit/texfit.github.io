@@ -1,0 +1,351 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0045)http://6.869.csail.mit.edu/fa19/schedule.html -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<link href="https://fonts.cdnfonts.com/css/caveat" rel="stylesheet">
+<style>
+    @import url('https://fonts.cdnfonts.com/css/caveat');
+</style>
+<script src="./assets/teaser-data.js"></script>
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>TexFit</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <meta name="description"
+        content="Project page for &#39;TexFit: Text-Driven Fashion Image Editing with Diffusion Models.&#39;">
+    <!-- <link rel="icon" href="./assets/showlab.ico"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+
+    </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>TexFit</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <meta name="description"
+        content="Project page for &#39;TexFit: Text-Driven Fashion Image Editing with Diffusion Models.&#39;">
+    <!-- <link rel="icon" href="./assets/showlab.ico"> -->
+</head>
+
+<body>
+    <p class="title">TexFit: Text-Driven Fashion Image Editing with Diffusion Models</p>
+    <p class="author">
+        <span class="author">
+            <a href="https://github.com/TongxinWong">Tongxin Wang</a><sup>1</sup>
+        </span>
+        <span class="author">
+            <a href="https://marswhu.github.io/">Mang Ye</a><sup>1</sup>
+        </span>
+    </p>
+
+    <p class="affiliations">
+        <span class="author"><sup>1</sup>School of Computer Science, Wuhan University</span>
+        <!-- <span class="author"><sup>1</sup><a href="https://sites.google.com/view/showlab">Show Lab</a>, National University of Singapore</span>
+        <span class="author"><sup>2</sup><a href="https://arc.tencent.com/en/index">ARC Lab</a>,<sup>3</sup>Tencent PCG</span><br/>
+        <span class="author"><sup>4</sup>School of Computing, National University of Singapore</span> -->
+    </p>
+
+    <!-- <p class="menu">
+        <a style="color: steelblue" href="https://arxiv.org/abs/2212.11565">[Paper (arXiv)]</a>
+        <a style="color: steelblue" href="https://github.com/showlab/Tune-A-Video" >[Code (Github)]</a>
+        <a style="color: steelblue" href="https://colab.research.google.com/github/showlab/Tune-A-Video/blob/main/notebooks/Tune-A-Video.ipynb">[Demo (Colab)]</a>
+        <a style="color: steelblue" href="https://huggingface.co/spaces/Tune-A-Video-library/Tune-A-Video-inference">[Demo (Hugging Face)]</a>
+    </p> -->
+
+    <div class="container">
+        <table width="1080px" height="100px" border="0" align="center">
+            <tbody>
+                <tr>
+                    <div id="imageCarousel" class="carousel slide teaser-carousel" data-ride="carousel" data-interval="1000000">
+                        <div class="carousel-inner">
+                            <!-- First -->
+                            <div class="carousel-item active">
+                                <div>
+                                    <img class="teaser-img" src="./assets/data/first-person.png" />
+                                    <span style="font-size: 150%;">→</span>
+                                    <img id="first-result" class="teaser-img" src="./assets/results/texfit/first-person/first-person-denim.png" />
+                                </div>
+                                <br />
+                                <div>
+                                    <div onclick="toggle_prompt('first-denim', ['first-red', 'first-striped'], 'first-result')" class="caption caption-active" id="first-denim">
+                                        "denim blue lower clothing"</div>
+                                    <br />
+                                    <div onclick="toggle_prompt('first-red', ['first-denim', 'first-striped'], 'first-result')" class="caption" id="first-red">
+                                        "red cotton short-sleeve T-shirt"</div>
+                                    <br />
+                                    <div onclick="toggle_prompt('first-striped', ['first-denim', 'first-red'], 'first-result')" class="caption" id="first-striped">
+                                        "striped cotton long pants"</div>
+                                    <br />
+                                </div>
+                            </div>
+
+                            <!-- Second -->
+                            <div class="carousel-item">
+                                <div>
+                                    <img class="teaser-img" src="./assets/data/second-person.png" />
+                                    <span style="font-size: 150%;">→</span>
+                                    <img id="second-result" class="teaser-img" src="./assets/results/texfit/second-person/second-person-chiffon.png" />
+                                </div>
+                                <br />
+                                <div>
+                                    <div onclick="toggle_prompt('second-chiffon', ['second-red', 'second-magenta'], 'second-result')" class="caption caption-active" id="second-chiffon">
+                                        "gray sleeveless chiffon dress"</div>
+                                    <br />
+                                    <div onclick="toggle_prompt('second-red', ['second-chiffon', 'second-magenta'], 'second-result')" class="caption" id="second-red">
+                                        "red bag"</div>
+                                    <br />
+                                    <div onclick="toggle_prompt('second-magenta', ['second-chiffon', 'second-red'], 'second-result')" class="caption" id="second-magenta">
+                                        "magenta bag"</div>
+                                </div>
+                            </div>
+
+                            <!-- Third -->
+                            <div class="carousel-item">
+                                <div>
+                                    <img class="teaser-img" src="./assets/data/third-person.png" />
+                                    <span style="font-size: 150%;">→</span>
+                                    <img id="third-result" class="teaser-img" src="./assets/results/texfit/third-person/third-person-leather.png" />
+                                </div>
+                                <br />
+                                <div>
+                                    <div onclick="toggle_prompt('third-leather', ['third-denim', 'third-gray'], 'third-result')" class="caption caption-active" id="third-leather">
+                                        "black leather long trousers"</div>
+                                    <br />
+                                    <div onclick="toggle_prompt('third-denim', ['third-leather', 'third-gray'], 'third-result')" class="caption" id="third-denim">
+                                        "denim blue long pants"</div>
+                                    <br />
+                                    <div onclick="toggle_prompt('third-gray', ['third-leather', 'third-denim'], 'third-result')" class="caption" id="third-gray">
+                                        "cotton long gray trousers"</div>
+                                </div>
+                            </div>
+
+                            <!-- Fourth -->
+                            <div class="carousel-item">
+                                <div>
+                                    <img class="teaser-img" src="./assets/data/fourth-person.png" />
+                                    <span style="font-size: 150%;">→</span>
+                                    <img id="fourth-result" class="teaser-img" src="./assets/results/texfit/fourth-person/fourth-person-knitted.png" />
+                                </div>
+                                <br />
+                                <div>
+                                    <div onclick="toggle_prompt('fourth-knitted', ['fourth-fur', 'fourth-khaki'], 'fourth-result')" class="caption caption-active" id="fourth-knitted">
+                                        "white knitted long-sleeve sweater"</div>
+                                    <br />
+                                    <div onclick="toggle_prompt('fourth-fur', ['fourth-knitted', 'fourth-khaki'], 'fourth-result')" class="caption" id="fourth-fur">
+                                        "fur blue long-sleeve sweater"</div>
+                                    <br />
+                                    <div onclick="toggle_prompt('fourth-khaki', ['fourth-knitted', 'fourth-fur'], 'fourth-result')" class="caption" id="fourth-khaki">
+                                        "khaki cotton long-sleeve sweater"</div>
+                                </div>
+                            </div>
+
+                            <!-- Fourth -->
+                            <div class="carousel-item">
+                                <div>
+                                    <img class="teaser-img" src="./assets/data/fifth-person.png" />
+                                    <span style="font-size: 150%;">→</span>
+                                    <img id="fifth-result" class="teaser-img" src="./assets/results/texfit/fifth-person/fifth-person-navy.png" />
+                                </div>
+                                <br />
+                                <div>
+                                    <div onclick="toggle_prompt('fifth-navy', ['fifth-floral', 'fifth-pink'], 'fifth-result')" class="caption caption-active" id="fifth-navy">
+                                        "cotton medium short navy skirt"</div>
+                                    <br />
+                                    <div onclick="toggle_prompt('fifth-floral', ['fifth-navy', 'fifth-pink'], 'fifth-result')" class="caption" id="fifth-floral">
+                                        "floral medium short skirt"</div>
+                                    <br />
+                                    <div onclick="toggle_prompt('fifth-pink', ['fifth-navy', 'fifth-floral'], 'fifth-result')" class="caption" id="fifth-pink">
+                                        "pink chiffon medium short skirt"</div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <a class="carousel-control-prev" href="#imageCarousel" role="button" data-slide="prev">
+                            <div class="slider-navigation-previous">
+                                <svg viewBox="0 0 50 80" xml:space="preserve">
+                                    <polyline fill="white" stroke-width=".5em" stroke-linecap="round"
+                                        stroke-linejoin="round" points="45.63,75.8 0.375,38.087 45.63,0.375 ">
+                                    </polyline>
+                                </svg>
+                            </div>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#imageCarousel" role="button" data-slide="next">
+                            <div class="slider-navigation-next">
+                                <svg viewBox="0 0 50 80" xml:space="preserve">
+                                    <polyline fill="white" stroke-width=".5em" stroke-linecap="round"
+                                        stroke-linejoin="round" points="0.375,0.375 45.63,38.087 0.375,75.8 ">
+                                    </polyline>
+                                </svg>
+                            </div>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </tr>
+                <tr> <br /> </tr>
+                <tr align="center"></tr>
+            </tbody>
+        </table>
+        &nbsp;
+        <p class="section">&nbsp;</p>
+
+        <p style="text-align: center;"><span class="section"><b>Abstract</b></span></p>
+        <p style="text-align: justify; display: flex; justify-content: center; max-width: 900px; margin:auto">
+            Fashion image editing aims to edit an input image to obtain richer or distinct visual clothing matching
+            effects. Existing global fashion image editing methods are difficult to achieve rich outfit combination
+            effects while local fashion image editing is more in line with the needs of diverse and personalized
+            outfit matching. The local editing techniques typically depend on text and auxiliary modalities (e.g.,
+            human poses, human keypoints, garment sketches, etc.) for image manipulation, where the auxiliary modalities
+            essentially assist in locating the editing region. Since these auxiliary modalities usually involve additional
+            efforts in practical application scenarios, text-driven fashion image editing shows high flexibility. In this
+            paper, we propose TexFit, a Text-driven Fashion image Editing
+            method using diffusion models, which performs the local image editing only with the easily accessible text.
+            Our approach employs a text-based editing region location module to predict precise editing region in the
+            fashion image. Then, we take the predicted region as the generation condition of diffusion models together
+            with the text prompt to achieve precise local editing of fashion images while keeping the rest part intact.
+            In addition, previous fashion datasets usually focus on global description, lacking local descriptive
+            information that can guide the precise local editing. Therefore, we develop a new DFMM-Spotlight dataset
+            by using region extraction and attribute combination strategies. It focuses locally on clothes and accessories,
+            enabling local editing with text input. Experimental results on the DFMM-Spotlight dataset demonstrate the
+            effectiveness of our model.
+        <p class="section">&nbsp;</p>
+
+        <p class="section"><b>Method</b></p>
+        <div style="text-align: center">
+            <img src="./assets/method.png" alt="" width="1080px" style="max-width: 100%; height: auto;" />
+        </div>
+        <p style="text-align: justify">
+            Overview of our TexFit. We divide the entire editing process into two stages. In the first stage, we locate the editing
+            region in the fashion image based on the text prompt, and then in the second stage we employ LDMs to precisely edit the visual
+            content within the editing region of the fashion image.
+        </p>
+
+        <p class="section">&nbsp;</p>
+
+        <p class="section"><b>Additional Results</b></p>
+        <!-- <div style="text-align: center">
+            <img src="./sm/assets/results.jpg" alt="" width="850" style="margin: auto" />
+        </div> -->
+
+        <div style="text-align: center">
+            <img src="./assets/additional-results.png" alt="" width="800px" style="max-width: 100%; height: auto;" />
+        </div>
+        </br>
+
+        <!-- <p class="section">&nbsp;</p> -->
+
+        <!-- <p class="section" id="paper"><b>Paper</b></p>
+        <table width="940" border="0">
+            <tbody>
+                <tr>
+                    <td height="100"><a href="https://arxiv.org/abs/2211.12572" target="_blank" rel="noopener noreferrer"><img
+                                src="./sm/assets/paper_cover.jpeg" alt="" width="140" height="167"></a></td>
+                    <td width="750">
+                        <p><b>Plug-and-Play Diffusion Features for Text-Driven Image-to-Image Translation</b><br>
+                            Narek Tumanyan <sup>*</sup>, Michal Geyer <sup>*</sup>, Shai Bagon, Tali Dekel.<br />
+                            (* indicates equal contribution) <br>
+                            [<a href="https://arxiv.org/abs/2211.12572" target="_blank"
+                                rel="noopener noreferrer">paper</a>]</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="section">&nbsp;</p> -->
+
+        <!-- <p class="section" id="sm"><b>Supplementary Material</b></p>
+        <table width="587" height="136" border="0">
+            <tbody>
+                <tr>
+                    <td width="180"><img src="./assets/sm/assets/sm.png" alt="" height="150"></td>
+                    <td align="left">
+                        <p>[<a href="./assets/sm/index.html" target="_blank">supplementary page</a>]</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="section">&nbsp;</p> -->
+
+        <!-- <p class="section" id="bibtex"><b>Bibtex</b></p>
+        <table border="0">
+            <tbody>
+                <pre style=" display: block;
+                    background: #eee;
+                    white-space: pre;
+                    -webkit-overflow-scrolling: touch;
+                    max-width: 100%;
+                    min-width: 100px;
+                    border-radius: 20px;
+                    ">
+
+    @article{wu2022tuneavideo,
+        title={Tune-A-Video: One-Shot Tuning of Image Diffusion Models for Text-to-Video Generation},
+        author={Wu, Jay Zhangjie and Ge, Yixiao and Wang, Xintao and Lei, Stan Weixian and Gu, Yuchao and Hsu, Wynne and Shan, Ying and Qie, Xiaohu and Shou, Mike Zheng},
+        journal={arXiv preprint arXiv:2212.11565},
+        year={2022}
+    }
+			    </pre>
+            </tbody>
+        </table> -->
+
+    </div>
+
+    <footer class="footer">
+        <p style="text-align: center;">
+            This page was adapted from <a href="https://github.com/tuneavideo/tuneavideo.github.io">this</a> source code.
+        </p>
+    </footer>
+
+
+</body>
+
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-WLX2Z5QLG8');
+ </script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ <script type="text/javascript">
+    $(document).ready(function () {
+
+        if (localStorage.getItem("my_app_name_here-quote-scroll") != null) {
+            $(window).scrollTop(localStorage.getItem("my_app_name_here-quote-scroll"));
+        }
+
+        $(window).on("scroll", function() {
+            localStorage.setItem("my_app_name_here-quote-scroll", $(window).scrollTop());
+        });
+
+      });
+ </script>
+
+ <script>
+    function prompt_on(prompt_element) {
+        prompt_element.classList.add("caption-active");
+    }
+
+    function prompt_off(prompt_element) {
+        prompt_element.classList.remove("caption-active");
+    }
+
+    function toggle_prompt(active_prompt_id, inactive_prompt_ids, result_id) {
+        let active_prompt = document.getElementById(active_prompt_id);
+        prompt_on(active_prompt);
+        for (let i = 0; i < inactive_prompt_ids.length; i++) {
+            let inactive_prompt = document.getElementById(inactive_prompt_ids[i]);
+            prompt_off(inactive_prompt);
+        }
+
+        let result = document.getElementById(result_id);
+        result.src = file_paths[active_prompt_id];
+    }
+ </script>
+
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</html>
